@@ -60,8 +60,8 @@ export const robot = (app: Probot) => {
         pull_request.locked ||
         pull_request.draft
       ) {
-        console.log('invalid event paylod');
-        return 'invalid event paylod';
+        console.log('invalid event payload');
+        return 'invalid event payload';
       }
 
       const target_label = process.env.TARGET_LABEL;
@@ -105,6 +105,7 @@ export const robot = (app: Probot) => {
       changedFiles = changedFiles?.filter(
         (file) => !ignoreList.some((ignore) => minimatch(file.filename, ignore))
       );
+      console.log({ ignoreList, changedFiles });
 
       if (!changedFiles?.length) {
         console.log('no target label attached');
