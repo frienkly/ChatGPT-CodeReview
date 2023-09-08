@@ -101,6 +101,7 @@ export const robot = (app: Probot) => {
 
       const ignoreList = (process.env.IGNORE || process.env.ignore || '')
         .split('\n')
+        .map((v) => v.trim())
         .filter((v) => v !== '');
       changedFiles = changedFiles?.filter(
         (file) => !ignoreList.some((ignore) => minimatch(file.filename, ignore))
